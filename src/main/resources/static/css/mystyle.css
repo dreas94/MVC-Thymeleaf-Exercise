@@ -1,0 +1,15 @@
+body, html{
+    margin: 0;
+}
+
+.about-bkg-container
+{
+    background-image: url("../img/code.jpg");
+    background-size: cover;
+}
+
+.fever-bkg-container
+{
+    background-image: url("../img/fever.jpg");
+    background-size: cover;
+}

@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Form</title>
+    <title>Fever Checker</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
@@ -11,7 +11,7 @@
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
-<body>
+<body class="fever-bkg-container">
 <nav th:insert="fragment/nav :: nav_fragment"></nav>
 
 <!-- HEADER -->
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h1>
-                    <i class="fas fa-folder"></i> <span th:text="#{lbl.contacts}"></span> </h1>
+                    <i class="fas fa-thermometer-empty"></i> <span th:text="#{fever.header}"></span> </h1>
             </div>
         </div>
     </div>
@@ -30,29 +30,19 @@
     <div class="container mt-3">
         <!-- CONTENT -->
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h4><span th:text="#{contact.header}"></span></h4>
-                    </div>
                     <div class="card-body">
-                        <form th:action="@{/contact}" method="post">
+                        <form th:action="@{/fever}" method="post">
                             <div class=>
-                                <label class="justify-content-start" for="contactInfo"><span th:text="#{lbl.name}"></span>:</label>
-                                <input type="text" class="form-control" id="contactInfo" placeholder="Enter Contact Info" name="contactInfo">
+                                <label class="justify-content-start" for="temperatureCelsius"><span th:text="#{lbl.temp}"></span>:</label>
+                                <input type="number" step="0.1" class="form-control" id="temperatureCelsius" placeholder="Enter temperature..." name="temperatureCelsius">
                                 <br>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center bg-success text-white mb-3">
-                    <div class="card-body">
-                        <h3><span th:text="#{contacts.header}"></span></h3>
-                        <br>
-                        <a th:href="@{/contacts}" class="btn btn-outline-light btn-sm"><span th:text="#{btn.ret}"></span> </a>
+                        <span th:unless="${message == null}"><br></span>
+                        <span th:text="${message} ?: ''"><br></span>
                     </div>
                 </div>
             </div>

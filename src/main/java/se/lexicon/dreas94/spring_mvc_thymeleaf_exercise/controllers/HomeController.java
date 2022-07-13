@@ -20,19 +20,7 @@ public class HomeController
         contactViews.add("Tabea Teufel 070-xxxxxxx");
     }
 
-    @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String defaultURL() {
-        System.out.println("##### default method has been executed ####");
-        return "index";
-    }
-
-    @GetMapping("/home")
-    public String home(){
-        System.out.println("##### home method has been executed ####");
-        return "index";
-    }
-
-    @GetMapping("/index")
+    @GetMapping({"/", "/index", "/home"})
     public String index(){
         System.out.println("##### index method has been executed ####");
         return "index";
@@ -50,7 +38,7 @@ public class HomeController
         System.out.println("Contact Info:" + contact);
 
         contactViews.add(contact);
-        return "contact";
+        return "redirect:/contacts";
     }
 
     @GetMapping("/contacts")
@@ -59,5 +47,12 @@ public class HomeController
         System.out.println("Number of Contacts: " + contactViews.size());
         model.addAttribute("contactViews",contactViews);
         return "contacts";
+    }
+
+    @GetMapping("/about")
+    public String about()
+    {
+        System.out.println("##### index method has been executed ####");
+        return "about";
     }
 }
